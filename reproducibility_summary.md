@@ -1,0 +1,7 @@
+# Reproducibility Summary
+
+The starter notebook had several issues that would stop another site from reproducing it. The dataset path was hard-coded to `/content/`, which only works in Colab. There was no record of required packages or versions, and `matplotlib` and `scipy` were imported partway through. The random sample and bootstrap had no seed, so they changed every run. There was no check that the right file was loaded. The data also used zeros for missing glucose, blood pressure, skin thickness, insulin, and BMI, and the original t-test treated those as real values.
+
+I reorganized the notebook into ten sections, from setup through conclusions. All imports, an install cell, version printing, and one random seed now sit at the top. The loading function finds the file in the working folder and opens an upload prompt on Colab if it is missing. A validation function stops the run if the columns, row count, or outcome coding do not match. I recoded impossible zeros as missing, switched to Welch's t-test since the group variances differ, and added a Mann-Whitney U test, a Spearman correlation heatmap, and two bivariate plots. I fixed the LaTeX and replaced the generic placeholders with the real variable names and p = 8.
+
+To verify, I ran Restart session and run all several times and confirmed the same sample rows, a bootstrap mean BMI of 32.36, and identical test results each time. The README lists expected outputs so another team can check their results against mine.
